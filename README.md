@@ -1,6 +1,6 @@
-# 🏦 **Credit Approval System**
 
-> **A Smart Django REST API for Seamless Credit Approvals & Loan Management**
+# 🏦 **Credit Approval System**  
+> **A Smart Django REST API for Seamless Credit Approvals & Loan Management**  
 > Built with ❤️ using Django, PostgreSQL & Docker.
 
 <p align="center">
@@ -13,25 +13,22 @@
 ---
 
 ## ✨ **Key Features**
-
-* 🔐 **Secure Customer Registration** — Encrypted data storage & safe onboarding
-* 📊 **Dynamic Credit Score Calculation** — Based on payment history & credit utilization
-* ✅ **Instant Loan Eligibility Checks** — Real-time approval logic
-* 💰 **Loan Lifecycle Management** — From approval to closure
-* 📈 **Automated EMI Calculations** — Accurate monthly installment breakdown
-* 🐳 **Dockerized Deployment** — With PostgreSQL integration
+- 🔐 Secure Customer Registration  
+- 📊 Dynamic Credit Score Calculation  
+- ✅ Instant Loan Eligibility Checks  
+- 💰 Loan Lifecycle Management  
+- 📈 Automated EMI Calculations  
+- 🐳 Dockerized Deployment with PostgreSQL  
 
 ---
 
 ## 🚀 **Quick Start**
 
 ### **Prerequisites**
-
-* [Docker](https://docs.docker.com/get-docker/) & Docker Compose
-* [Git](https://git-scm.com/)
+- [Docker](https://docs.docker.com/get-docker/) & Docker Compose  
+- [Git](https://git-scm.com/)  
 
 ### **Installation**
-
 ```bash
 # 1️⃣ Clone the repository
 git clone <your-repo-url>
@@ -43,29 +40,21 @@ docker-compose up --build
 # 3️⃣ Access the API
 # API Base URL: http://localhost:8000
 # Admin Panel: http://localhost:8000/admin
-```
+````
 
 ---
 
-## 📋 **API Endpoints**
-
-### 🏠 **Home**
-
-```http
-GET /
-```
-
-Returns available endpoints & system info.
+## 📋 **API Endpoints & Screenshots**
 
 ---
 
-### 👤 **Customer Management**
+### 👤 **Customer Registration**
 
 ```http
 POST /register
 ```
 
-**Request:**
+**Sample Request**
 
 ```json
 {
@@ -78,15 +67,30 @@ POST /register
 }
 ```
 
+| Screenshot                                         |
+| -------------------------------------------------- |
+| ![Register Customer](Test/Register%20Customer.png) |
+
 ---
 
-### 🔍 **Loan Eligibility**
+### 🔍 **Check Loan Eligibility**
 
 ```http
 POST /check-eligibility
 ```
 
-**Response Example:**
+**Sample Request**
+
+```json
+{
+  "customer_id": 1,
+  "loan_amount": 100000,
+  "interest_rate": 10.5,
+  "tenure": 12
+}
+```
+
+**Sample Response**
 
 ```json
 {
@@ -99,31 +103,45 @@ POST /check-eligibility
 }
 ```
 
+| Screenshot                                         |
+| -------------------------------------------------- |
+| ![Check Eligibility](Test/Check%20Eligibility.png) |
+
 ---
 
-### 💳 **Loan Creation**
+### 💳 **Create Loan**
 
 ```http
 POST /create-loan
 ```
 
-Creates a new loan for eligible customers.
+| Screenshot                             |
+| -------------------------------------- |
+| ![Create Loan](Test/Create%20Loan.png) |
 
 ---
 
-### 📄 **Loan Details**
+### 📄 **View Loan by Loan ID**
 
 ```http
 GET /view-loan/<loan_id>
 ```
 
+| Screenshot                                                           |
+| -------------------------------------------------------------------- |
+| ![View Loan using loan id](Test/View%20Loan%20using%20loan%20id.png) |
+
 ---
 
-### 📊 **Customer Loans**
+### 📊 **View All Loans by Customer**
 
 ```http
 GET /view-loans/<customer_id>
 ```
+
+| Screenshot                                                       |
+| ---------------------------------------------------------------- |
+| ![View Loans By Customer](Test/View%20Loans%20By%20Customer.png) |
 
 ---
 
@@ -156,36 +174,18 @@ GET /view-loans/<customer_id>
 
 ---
 
-## 🛠 **Development**
-
-### **Project Structure**
+## 📂 **Project Structure**
 
 ```
 credit_approval/
-├── credit_approval/      # Django project
-├── customers/            # Customer app
-├── loans/                # Loan app
-├── system/               # Utilities
+├── customers/          
+├── loans/              
+├── system/             
+├── Test/               # Screenshots for API tests
 ├── docker-compose.yml
 ├── Dockerfile
 ├── requirements.txt
 └── manage.py
-```
-
-### **Useful Commands**
-
-```bash
-# Run tests
-docker-compose exec web python manage.py test
-
-# Make migrations
-docker-compose exec web python manage.py makemigrations
-
-# Apply migrations
-docker-compose exec web python manage.py migrate
-
-# Create superuser
-docker-compose exec web python manage.py createsuperuser
 ```
 
 ---
@@ -197,14 +197,7 @@ docker-compose exec web python manage.py createsuperuser
 ```bash
 curl -X POST http://localhost:8000/register \
   -H "Content-Type: application/json" \
-  -d '{
-    "first_name": "Alice",
-    "last_name": "Johnson",
-    "age": 28,
-    "phone_number": "9876543210",
-    "monthly_income": 75000,
-    "approved_limit": 750000
-  }'
+  -d '{"first_name":"Alice","last_name":"Johnson","age":28,"phone_number":"9876543210","monthly_income":75000,"approved_limit":750000}'
 ```
 
 **Check Loan Eligibility**
@@ -212,42 +205,52 @@ curl -X POST http://localhost:8000/register \
 ```bash
 curl -X POST http://localhost:8000/check-eligibility \
   -H "Content-Type: application/json" \
-  -d '{
-    "customer_id": 1,
-    "loan_amount": 200000,
-    "interest_rate": 12.0,
-    "tenure": 24
-  }'
+  -d '{"customer_id":1,"loan_amount":200000,"interest_rate":12.0,"tenure":24}'
 ```
+
+---
+
+## 🖼 **Test Screenshots Overview**
+
+<p align="center">
+  <img src="Test/Register%20Customer.png" width="220" alt="Register Customer" />
+  <img src="Test/Check%20Eligibility.png" width="220" alt="Check Eligibility" />
+  <img src="Test/Create%20Loan.png" width="220" alt="Create Loan" />
+  <img src="Test/View%20Loan%20using%20loan%20id.png" width="220" alt="View Loan by ID" />
+  <img src="Test/View%20Loans%20By%20Customer.png" width="220" alt="View Loans by Customer" />
+</p>
 
 ---
 
 ## 🚨 **Troubleshooting**
 
-* **Database Connection Error** → `docker-compose logs db`
-* **404 Not Found** → Visit `http://localhost:8000` to check routes
-* **Permission Denied** → `chmod +x entrypoint.sh`
+| Issue                     | Possible Solution                                            |
+| ------------------------- | ------------------------------------------------------------ |
+| Database connection error | Run `docker-compose logs db` and ensure container is healthy |
+| 404 Not Found             | Verify endpoint paths and check `http://localhost:8000` root |
+| Permission denied         | Make script executable: `chmod +x entrypoint.sh`             |
 
 ---
 
 ## 🤝 **Contributing**
 
 1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Push to branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ---
 
 ## 📝 **License**
 
-This project is under the **MIT License** — see [LICENSE](LICENSE).
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) file for details.
 
 ---
 
 <p align="center">
-  💡 <i>"Financial decisions made smarter, faster, safer."</i> 💡
+  <strong>💡 "Financial decisions made smarter, faster, safer."</strong>
 </p>
+```
 
 ---
