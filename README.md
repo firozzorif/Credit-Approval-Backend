@@ -69,7 +69,7 @@ POST /register
 
 | Screenshot                                         |
 | -------------------------------------------------- |
-| ![Register Customer](Test/Register%20Customer.png) |
+| ![Register Customer](Tests/Register Customer.png) |
 
 ---
 
@@ -105,7 +105,7 @@ POST /check-eligibility
 
 | Screenshot                                         |
 | -------------------------------------------------- |
-| ![Check Eligibility](Test/Check%20Eligibility.png) |
+| ![Check Eligibility](Tests/Check Eligibility.png) |
 
 ---
 
@@ -117,7 +117,7 @@ POST /create-loan
 
 | Screenshot                             |
 | -------------------------------------- |
-| ![Create Loan](Test/Create%20Loan.png) |
+| ![Create Loan](Tests/Create Loan.png) |
 
 ---
 
@@ -129,7 +129,7 @@ GET /view-loan/<loan_id>
 
 | Screenshot                                                           |
 | -------------------------------------------------------------------- |
-| ![View Loan using loan id](Test/View%20Loan%20using%20loan%20id.png) |
+| ![View Loan using loan id](Tests/View Loan using loan id.png) |
 
 ---
 
@@ -141,7 +141,7 @@ GET /view-loans/<customer_id>
 
 | Screenshot                                                       |
 | ---------------------------------------------------------------- |
-| ![View Loans By Customer](Test/View%20Loans%20By%20Customer.png) |
+| ![View Loans By Customer](Tests/View Loans By Customer.png) |
 
 ---
 
@@ -213,11 +213,11 @@ curl -X POST http://localhost:8000/check-eligibility \
 ## 🖼 **Test Screenshots Overview**
 
 <p align="center">
-  <img src="Test/Register%20Customer.png" width="220" alt="Register Customer" />
-  <img src="Test/Check%20Eligibility.png" width="220" alt="Check Eligibility" />
-  <img src="Test/Create%20Loan.png" width="220" alt="Create Loan" />
-  <img src="Test/View%20Loan%20using%20loan%20id.png" width="220" alt="View Loan by ID" />
-  <img src="Test/View%20Loans%20By%20Customer.png" width="220" alt="View Loans by Customer" />
+  <img src="Tests/Register Customer.png" width="220" alt="Register Customer" />
+  <img src="Tests/Check Eligibility.png" width="220" alt="Check Eligibility" />
+  <img src="Tests/Create Loan.png" width="220" alt="Create Loan" />
+  <img src="Tests/View Loan using loan id.png" width="220" alt="View Loan by ID" />
+  <img src="Tests/View Loans By Customer.png" width="220" alt="View Loans by Customer" />
 </p>
 
 ---
