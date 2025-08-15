@@ -69,7 +69,7 @@ POST /register
 
 | Screenshot                                         |
 | -------------------------------------------------- |
-| ![Register Customer]("Tests/RegisterCustomer.png") |
+| ![Register Customer](Tests/RegisterCustomer.png) |
 
 ---
 
