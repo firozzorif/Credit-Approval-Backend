@@ -1,61 +1,71 @@
-# 🏦 Credit Approval System
+# 🏦 **Credit Approval System**
 
-A robust Django REST API system for managing customer credit approvals and loan processing with intelligent credit scoring algorithms.
+> **A Smart Django REST API for Seamless Credit Approvals & Loan Management**
+> Built with ❤️ using Django, PostgreSQL & Docker.
 
-## ✨ Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Django-5.2.5-092E20?style=for-the-badge&logo=django" />
+  <img src="https://img.shields.io/badge/PostgreSQL-15-316192?style=for-the-badge&logo=postgresql" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" />
+</p>
 
-- 🔐 **Customer Registration** - Secure customer onboarding
-- 📊 **Credit Score Calculation** - Dynamic credit assessment based on payment history
-- ✅ **Loan Eligibility Check** - Real-time approval decisions
-- 💰 **Loan Management** - Complete loan lifecycle management
-- 📈 **EMI Calculations** - Automated monthly installment calculations
-- 🐳 **Docker Ready** - Containerized deployment with PostgreSQL
+---
 
-## 🚀 Quick Start
+## ✨ **Key Features**
 
-### Prerequisites
+* 🔐 **Secure Customer Registration** — Encrypted data storage & safe onboarding
+* 📊 **Dynamic Credit Score Calculation** — Based on payment history & credit utilization
+* ✅ **Instant Loan Eligibility Checks** — Real-time approval logic
+* 💰 **Loan Lifecycle Management** — From approval to closure
+* 📈 **Automated EMI Calculations** — Accurate monthly installment breakdown
+* 🐳 **Dockerized Deployment** — With PostgreSQL integration
 
-- Docker & Docker Compose
-- Git
+---
 
-### Installation
+## 🚀 **Quick Start**
 
-1. **Clone the repository**
+### **Prerequisites**
 
-   ```bash
-   git clone <your-repo-url>
-   cd credit_approval
-   ```
+* [Docker](https://docs.docker.com/get-docker/) & Docker Compose
+* [Git](https://git-scm.com/)
 
-2. **Start the application**
+### **Installation**
 
-   ```bash
-   docker-compose up --build
-   ```
+```bash
+# 1️⃣ Clone the repository
+git clone <your-repo-url>
+cd credit_approval
 
-3. **Access the API**
-   - API Base URL: `http://localhost:8000`
-   - Admin Panel: `http://localhost:8000/admin`
+# 2️⃣ Start the application
+docker-compose up --build
 
-## 📋 API Endpoints
-
-### 🏠 Home
-
+# 3️⃣ Access the API
+# API Base URL: http://localhost:8000
+# Admin Panel: http://localhost:8000/admin
 ```
+
+---
+
+## 📋 **API Endpoints**
+
+### 🏠 **Home**
+
+```http
 GET /
 ```
 
-Returns available API endpoints and system information.
+Returns available endpoints & system info.
 
-### 👤 Customer Management
+---
 
-```
+### 👤 **Customer Management**
+
+```http
 POST /register
 ```
 
-Register a new customer in the system.
-
-**Request Body:**
+**Request:**
 
 ```json
 {
@@ -68,26 +78,15 @@ Register a new customer in the system.
 }
 ```
 
-### 🔍 Loan Eligibility
+---
 
-```
+### 🔍 **Loan Eligibility**
+
+```http
 POST /check-eligibility
 ```
 
-Check if a customer is eligible for a loan.
-
-**Request Body:**
-
-```json
-{
-  "customer_id": 1,
-  "loan_amount": 100000,
-  "interest_rate": 10.5,
-  "tenure": 12
-}
-```
-
-**Response:**
+**Response Example:**
 
 ```json
 {
@@ -100,157 +99,100 @@ Check if a customer is eligible for a loan.
 }
 ```
 
-### 💳 Loan Creation
+---
 
-```
+### 💳 **Loan Creation**
+
+```http
 POST /create-loan
 ```
 
-Create a new loan for an eligible customer.
+Creates a new loan for eligible customers.
 
-**Request Body:** Same as eligibility check
+---
 
-**Response:**
+### 📄 **Loan Details**
 
-```json
-{
-  "loan_id": 1,
-  "customer_id": 1,
-  "loan_approved": true,
-  "message": "Loan approved successfully",
-  "monthly_installment": 8792.59
-}
-```
-
-### 📄 Loan Details
-
-```
+```http
 GET /view-loan/<loan_id>
 ```
 
-View details of a specific loan.
+---
 
-**Response:**
+### 📊 **Customer Loans**
 
-```json
-{
-  "loan_id": 1,
-  "customer": {
-    "id": 1,
-    "first_name": "John",
-    "last_name": "Doe",
-    "phone_number": "1234567890",
-    "age": 30
-  },
-  "loan_amount": 100000,
-  "interest_rate": 10.5,
-  "monthly_installment": 8792.59,
-  "tenure": 12
-}
-```
-
-### 📊 Customer Loans
-
-```
+```http
 GET /view-loans/<customer_id>
 ```
 
-View all loans for a specific customer.
+---
 
-## 🧮 Credit Scoring Algorithm
+## 🧮 **Credit Scoring Algorithm**
 
-The system uses a sophisticated credit scoring algorithm based on:
+| **Credit Score** | **Decision**                    |
+| ---------------- | ------------------------------- |
+| > 50             | ✅ Approved at requested rate    |
+| 30–50            | ⚠️ Approved with ≥ 12% interest |
+| 10–30            | ⚠️ Approved with ≥ 16% interest |
+| ≤ 10             | ❌ Rejected                      |
 
-- **Payment History** (35%): On-time EMI payments
-- **Credit Utilization** (30%): Current debt vs approved limit
-- **Loan History** (20%): Number and types of past loans
-- **Account Age** (15%): Length of credit history
+**Factors:**
 
-### Approval Rules
+* Payment History (35%)
+* Credit Utilization (30%)
+* Loan History (20%)
+* Account Age (15%)
 
-| Credit Score | Approval Criteria                          |
-| ------------ | ------------------------------------------ |
-| > 50         | ✅ Automatic approval at requested rate    |
-| 30-50        | ⚠️ Approval with minimum 12% interest rate |
-| 10-30        | ⚠️ Approval with minimum 16% interest rate |
-| ≤ 10         | ❌ Loan rejected                           |
+---
 
-## 🏗️ Architecture
+## 🏗 **Architecture**
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Django API    │────│   PostgreSQL    │────│     Docker      │
-│   (Port 8000)   │    │   (Port 5432)   │    │   Environment   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+┌───────────────┐     ┌───────────────┐     ┌───────────────┐
+│   Django API  │ ─── │  PostgreSQL   │ ─── │   Docker Env  │
+│   (Port 8000) │     │  (Port 5432)  │     │               │
+└───────────────┘     └───────────────┘     └───────────────┘
 ```
 
-### Tech Stack
+---
 
-- **Backend**: Django 5.2.5 + Django REST Framework
-- **Database**: PostgreSQL 15
-- **Containerization**: Docker & Docker Compose
-- **Web Server**: Gunicorn (Production) / Django Dev Server (Development)
+## 🛠 **Development**
 
-## 🛠️ Development
-
-### Project Structure
+### **Project Structure**
 
 ```
 credit_approval/
-├── 📁 credit_approval/     # Main Django project
-├── 📁 customers/           # Customer management app
-├── 📁 loans/              # Loan management app
-├── 📁 system/             # System utilities
-├── 📄 docker-compose.yml  # Docker orchestration
-├── 📄 dockerfile          # Container definition
-├── 📄 requirements.txt    # Python dependencies
-└── 📄 manage.py           # Django management
+├── credit_approval/      # Django project
+├── customers/            # Customer app
+├── loans/                # Loan app
+├── system/               # Utilities
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+└── manage.py
 ```
 
-### Running Tests
+### **Useful Commands**
 
 ```bash
+# Run tests
 docker-compose exec web python manage.py test
-```
 
-### Database Migrations
-
-```bash
+# Make migrations
 docker-compose exec web python manage.py makemigrations
+
+# Apply migrations
 docker-compose exec web python manage.py migrate
-```
 
-### Create Superuser
-
-```bash
+# Create superuser
 docker-compose exec web python manage.py createsuperuser
 ```
 
-## 🔧 Configuration
+---
 
-### Environment Variables
+## 📊 **Sample Requests**
 
-Create a `.env` file with:
-
-```env
-POSTGRES_DB=credit_db
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=root
-DB_HOST=db
-DB_PORT=5432
-```
-
-### Docker Services
-
-- **web**: Django application server
-- **db**: PostgreSQL database with health checks
-- **volumes**: Persistent data storage
-
-## 📊 Sample Data
-
-To test the API, you can use these sample requests:
-
-### Register a Customer
+**Register a Customer**
 
 ```bash
 curl -X POST http://localhost:8000/register \
@@ -265,7 +207,7 @@ curl -X POST http://localhost:8000/register \
   }'
 ```
 
-### Check Loan Eligibility
+**Check Loan Eligibility**
 
 ```bash
 curl -X POST http://localhost:8000/check-eligibility \
@@ -278,51 +220,34 @@ curl -X POST http://localhost:8000/check-eligibility \
   }'
 ```
 
-## 🚨 Troubleshooting
+---
 
-### Common Issues
+## 🚨 **Troubleshooting**
 
-**Database Connection Error**
-
-```
-Solution: Ensure PostgreSQL container is healthy
-docker-compose logs db
-```
-
-**404 Not Found**
-
-```
-Solution: Check if you're using the correct endpoints
-Visit http://localhost:8000 for available routes
-```
-
-**Permission Denied**
-
-```
-Solution: Make sure entrypoint script is executable
-chmod +x entrypoint.sh
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Django REST Framework for the robust API foundation
-- PostgreSQL for reliable data persistence
-- Docker for seamless containerization
+* **Database Connection Error** → `docker-compose logs db`
+* **404 Not Found** → Visit `http://localhost:8000` to check routes
+* **Permission Denied** → `chmod +x entrypoint.sh`
 
 ---
 
-<div align="center">
-  <strong>Built with ❤️ using Django & Docker</strong>
-</div>
+## 🤝 **Contributing**
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to branch
+5. Open a Pull Request
+
+---
+
+## 📝 **License**
+
+This project is under the **MIT License** — see [LICENSE](LICENSE).
+
+---
+
+<p align="center">
+  💡 <i>"Financial decisions made smarter, faster, safer."</i> 💡
+</p>
+
+---
