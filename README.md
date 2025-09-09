@@ -213,7 +213,7 @@ curl -X POST http://localhost:8000/check-eligibility \
 ## 🖼 **Test Screenshots Overview**
 
 <p align="center">
-  <img src="Tests/Register%20Customer.png" width="220" alt="Register Customer" />
+  <img src="Tests/RegisterCustomer.png" width="220" alt="Register Customer" />
   <img src="Tests/Check%20Eligibility.png" width="220" alt="Check Eligibility" />
   <img src="Tests/Create%20Loan.png" width="220" alt="Create Loan" />
   <img src="Tests/View%20Loan%20using%20loan%20id.png" width="220" alt="View Loan by ID" />
